@@ -62,7 +62,7 @@ body {
 .chat-window .chat-header {
   height: 45px;
   border-radius: 6px;
-  background: #fff;
+  background: gray;
   position: relative;
   cursor: pointer;
 }
@@ -182,11 +182,13 @@ body {
   outline: none;
   font-size: 25px;
   color: lightgray;
+  border-radius: 2px;
+  border: solid 1px;
 }
 
-.chat-window .chat-footer button:hover {
+/* .chat-window .chat-footer button:hover {
   color: #4349a0;
-}
+} */
 .hide {
   opacity: 0 !important;
 }

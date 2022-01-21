@@ -34,11 +34,11 @@ io.on("connection", (socket) => {
     console.log(data);
     socket.to(data.room).emit("delete_message-server", data.data);
   });
-});
 
-socket.on("update", (data) => {
-  console.log(data);
-  console.log("update_message-server ", data.data);
+  socket.on("update_message", (data) => {
+    console.log(data);
+    socket.to(data.room).emit("update_message-server", data.data);
+  });
 });
 
 server.listen(3001, () => {

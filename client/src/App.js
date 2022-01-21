@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       {!showChat ? (
         <div className="joinChatContainer">
-          <h3 style={{ color: "#FFF" }}>Miru App</h3>
+          <h3 style={{ color: "#FFF" }}>Chat App</h3>
           <input
             type="text"
             placeholder="Mir..."

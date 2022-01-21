@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+// import attachment from "../assets/paper-clip.png";
 
 function formatAMPM(date) {
   var hours = date.getHours();
@@ -15,7 +16,7 @@ function formatAMPM(date) {
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const [message, setMessage] = useState();
+  // const [message, setMessage] = useState();
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -109,7 +110,14 @@ function Chat({ socket, username, room }) {
           }}
         />
 
-        {/*<button onClick={updateMessage}> &#xf304; </button> */}
+        {/*       
+        <label htmlFor="hidden-file">
+          <img width="20" src={attachment} alt={""} />
+        </label> */}
+        {/* <button>
+          <img width="20" src={attachment} alt={""} />
+        </button> */}
+
         <button onClick={sendMessage}>&#9658;</button>
       </div>
     </div>
