@@ -16,7 +16,7 @@ function formatAMPM(date) {
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  // const [message, setMessage] = useState();
+  const [message, setMessage] = useState();
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -43,11 +43,10 @@ function Chat({ socket, username, room }) {
   };
 
   const updateMessage = (message) => {
-    const newMessageAfterUpdate = messageList.map(
-      (msg) => message.id !== msg.id
-    );
-    socket.emit("update_message", { data: newMessageAfterUpdate, room });
-    setMessageList(newMessageAfterUpdate);
+    const newUpdateMessage = messageList.map((msg) => message.id !== msg.id);
+
+    socket.emit("update_message", { data: newUpdateMessage, room });
+    setMessageList(newUpdateMessage);
   };
   // const updateMessage = (message) => {
   //   socket.emit("update_message", { data: newMessageAfterUpdate, room });
@@ -62,12 +61,17 @@ function Chat({ socket, username, room }) {
       console.log(data);
       setMessageList(data);
     });
+
+    socket.on("update_message-server", (data) => {
+      console.log(data);
+      setMessageList(data);
+    });
   }, [socket]);
 
   return (
     <div className="chat-window">
       <div className="chat-header">
-        <p>Live Chat</p>
+        <p>My Chat</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
