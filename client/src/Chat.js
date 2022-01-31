@@ -16,7 +16,7 @@ function formatAMPM(date) {
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const [message, setMessage] = useState();
+  // const [message, setMessage] = useState();
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -42,11 +42,15 @@ function Chat({ socket, username, room }) {
     setMessageList(newMessageAfterDelete);
   };
 
-  const updateMessage = (message) => {
-    const newUpdateMessage = messageList.map((msg) => message.id !== msg.id);
-
-    socket.emit("update_message", { data: newUpdateMessage, room });
-    setMessageList(newUpdateMessage);
+  const EditMessage = (message) => {
+    const newEditMessage = messageList.map((msg) => {
+      if (message.id === msg.id) {
+        return { ...msg, message: "" };
+      }
+      return msg;
+    });
+    socket.emit("edit_message", { data: newEditMessage, room });
+    setMessageList(newEditMessage);
   };
   // const updateMessage = (message) => {
   //   socket.emit("update_message", { data: newMessageAfterUpdate, room });
@@ -62,8 +66,7 @@ function Chat({ socket, username, room }) {
       setMessageList(data);
     });
 
-    socket.on("update_message-server", (data) => {
-      console.log(data);
+    socket.on("edit_message-server", (data) => {
       setMessageList(data);
     });
   }, [socket]);
@@ -71,7 +74,7 @@ function Chat({ socket, username, room }) {
   return (
     <div className="chat-window">
       <div className="chat-header">
-        <p>My Chat</p>
+        <p>Apna Live Chat</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
@@ -90,12 +93,16 @@ function Chat({ socket, username, room }) {
                     <p id="author">{messageContent.author}</p>
                   </div>
                 </div>
-                <button onClick={() => removeMessage(messageContent)}>
-                  &#x2425;{" "}
-                </button>
-                <button onClick={() => updateMessage(messageContent)}>
-                  &#xf304;{" "}
-                </button>
+                <div className="my_button">
+                  <button onClick={() => removeMessage(messageContent)}>
+                    Del{" "}
+                  </button>
+                </div>
+                <div className="our_button">
+                  <button onClick={() => EditMessage(messageContent)}>
+                    Edit{" "}
+                  </button>
+                </div>
               </div>
             );
           })}
@@ -105,7 +112,7 @@ function Chat({ socket, username, room }) {
         <input
           type="text"
           value={currentMessage}
-          placeholder="Hey..."
+          placeholder="Hello..."
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}

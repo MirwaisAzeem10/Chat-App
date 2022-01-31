@@ -24,7 +24,7 @@ function App() {
           <h3 style={{ color: "#FFF" }}>Chat App</h3>
           <input
             type="text"
-            placeholder="Mir..."
+            placeholder="Hi..."
             onChange={(event) => {
               setUsername(event.target.value);
             }}

@@ -18,6 +18,9 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+  border: solid;
+  border-color: white;
+  padding: 33px;
 }
 
 .joinChatContainer h3 {
@@ -52,26 +55,29 @@ body {
 }
 
 .chat-window {
-  width: 300px;
-  height: 420px;
+  width: 400px;
+  height: 500px;
 }
 
 .chat-window p {
   margin: 0;
 }
 .chat-window .chat-header {
-  height: 45px;
+  height: 50px;
   border-radius: 6px;
-  background: gray;
+  background: #4349a0;
   position: relative;
   cursor: pointer;
+  border: solid;
+  color: #fff;
 }
 .chat-window .chat-header p {
   display: block;
   padding: 0 1em 0 2em;
-  color: #4349a0;
-  font-weight: 700;
+  color: #fff;
+  font-weight: 800;
   line-height: 45px;
+  text-align: center;
 }
 
 .chat-window .chat-body {
@@ -191,4 +197,16 @@ body {
 } */
 .hide {
   opacity: 0 !important;
+}
+
+.my_button {
+  margin-top: 5px;
+}
+
+.my_button :hover {
+  background-color: red;
+}
+
+.our_button {
+  margin-top: 5px;
 }

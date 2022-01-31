@@ -35,9 +35,8 @@ io.on("connection", (socket) => {
     socket.to(data.room).emit("delete_message-server", data.data);
   });
 
-  socket.on("update_message", (data) => {
-    console.log(data);
-    socket.to(data.room).emit("update_message-server", data.data);
+  socket.on("edit_message", (data) => {
+    socket.to(data.room).emit("edit_message-server", data.data);
   });
 });
 
