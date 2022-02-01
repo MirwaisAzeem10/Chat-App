@@ -26,6 +26,7 @@ function Chat({ socket, username, room }) {
         message: currentMessage,
         time: formatAMPM(new Date()),
         id: new Date(),
+        socketId: socket.id,
       };
 
       await socket.emit("send_message", messageData);
@@ -45,7 +46,8 @@ function Chat({ socket, username, room }) {
   const EditMessage = (message) => {
     const newEditMessage = messageList.map((msg) => {
       if (message.id === msg.id) {
-        return { ...msg, message: "" };
+        const data = prompt();
+        msg.message = data;
       }
       return msg;
     });
